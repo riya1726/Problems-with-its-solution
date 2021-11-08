@@ -1,3 +1,5 @@
+https://leetcode.com/problems/single-number/
+
 class Solution {
     public int singleNumber(int[] nums) {
         Arrays.sort(nums);
