@@ -1,0 +1,57 @@
+https://leetcode.com/problems/add-binary/
+
+class Solution {
+    public String addBinary(String a, String b) {
+        boolean carry = false;
+        StringBuilder sb = new StringBuilder();
+        if(a.length() > b.length()) {
+            for(int i=1; i<=a.length()-b.length(); i++) {
+                sb.append('0');
+            }
+            sb.append(b);
+            b = sb.toString();
+        }
+        else if(b.length() > a.length()) {
+            for(int i=1; i<=b.length()-a.length(); i++) {
+                sb.append('0');
+            }
+            sb.append(a);
+            a = sb.toString();
+        }
+        sb.delete(0, sb.length());
+        
+        for(int i=a.length()-1 ; i>=0 ; i--) {
+            if(a.charAt(i) != b.charAt(i)) {
+                if(carry) {
+                    sb.append('0');
+                    carry = true;
+                } else {
+                    sb.append('1');
+                    carry = false;
+                }
+            }
+            else if(a.charAt(i) == '0' && b.charAt(i) == '0'){
+                if(carry) {
+                    sb.append('1');
+                }
+                else{
+                    sb.append('0');
+                }
+                carry = false;
+            }
+            else{
+                if(carry){
+                    sb.append('1');
+                }
+                else {
+                    sb.append('0');
+                } 
+                carry = true;
+            }
+        }
+            if(carry) {
+                sb.append('1');
+            }
+        return sb.reverse().toString();
+    }
+}
